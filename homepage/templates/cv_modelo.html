@@ -1,0 +1,33 @@
+{% load static %}
+<!doctype html>
+{% include 'header.html' %}
+  <body>
+    {% include 'navbar.html' %}
+    <section class='flex_col_stretch'>
+      <div class='card'>
+        <div class='container'>
+          <h1>Validação Cruzada Do Modelo Utilizando</h1>
+          <h1>Método K-Dobras com K=5:</h1>
+          <br>
+          <h2>Coeficientes de Determinação dos Modelos Treinados No Subconjunto de Teste:</h2>
+          <br>
+          {% for c in cv %}
+          <h2>{{c}}</h2>
+          {% endfor %}
+          <br>
+          <h2> Média dos Coeficientes: {{cv_m}}</h2>
+        </div>
+      </div>
+      <div class='card'>
+        <div class='container'>
+          <h1>Coeficientes de Determinação de Um Modelo Nos Subconjuntos de Treino e de Teste:</h1>
+          <br>
+          <h2>Treino: {{r_treino}}</h2>
+          <br>
+          <h2>Teste: {{r_teste}}</h2>
+        </div>
+      </div>
+    </section>
+    <script src="{% static 'js/sidenav.js' %}"></script>
+  </body>
+</html>

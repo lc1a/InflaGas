@@ -1,0 +1,37 @@
+{% load static %}
+{% include 'header.html' %}
+<body>
+  {% include 'navbar.html' %}
+  <h1>Tabela de Testes de Parâmetros Feitas:</h1>
+  <br>
+  <section class='flex_col_center' id='tteste'>
+    <div class='card'>
+      <table class="fixed_header">
+        <thead>
+          <tr>
+            <th scope='col'>Id</th>
+            <th scope='col'>Algoritmo</th>
+            <th scope='col'>Parâmetro</th>
+            <th scope='col'>Valores</th>
+            <th scope='col'>R2Treino</th>
+            <th scope='col'>R2Teste</th>
+          </tr>
+        </thead>
+        {% for t in lista_testes %}
+        <tbody>
+          <tr>
+            <td data-label='Id'>{{t.id}}</td>
+            <td data-label='Algoritmo'>{{t.Algoritmo}}</td>
+            <td data-label='Parâmetro'>{{t.Parametro}}</td>
+            <td data-label='Valores'>{{t.Valores}}</td>
+            <td data-label='R2Treino'>{{t.R2Treino}}</td>
+            <td data-label='R2Teste'>{{t.R2Teste}}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+    <script src="{% static 'js/sidenav.js' %}"></script>
+</body>
+</html>

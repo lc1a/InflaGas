@@ -1,0 +1,63 @@
+{% load static %}
+<!doctype html>
+{% include 'header.html' %}
+  <body>
+    {% include 'navbar.html' %}
+    <h1>Informações sobre o Modelo</h1>
+    <section class='flex_col_stretch'>
+      <div class='card'>
+        <div class='container'>
+          <h2>O modelo sendo utilizado é uma Árvore de Decisão Regressora, sem ajuste de parâmetros</h2>
+          <h2>Os dados utilizados para treiná-lo não foram normalizados.</h2>
+        </div>
+      </div>
+      <div class='card'>
+        <div class='container'>
+          <h2>O objetivo do algoritmo utilizado para treinar o modelo é minimizar uma função de erro, cujo retorno
+            é uma medida do quão distantes os valores previstos pelo modelo estão dos valores reais dos exemplos vistos
+            por este durante sua fase de treinamento.</h2>
+        </div>
+      </div>
+      <div class='card'>
+        <div class='container'>
+          <h2>Este algoritmo pertence à classe de algoritmos de Aprendizagem de Máquina Supervisionada, na qual o objetivo
+            é encontrar um modelo capaz de mapear os atributos (Dados de entrada) aos valores-alvo (Valores que se deseja
+            prever), a partir de dados já existentes destes, chamados de dados rotulados.</h2>
+        </div>
+      </div>
+      <div class='card'>
+        <div class='container'>
+          <h2>Normalmente se fornece somente um subconjunto dos dados adquiridos ao algoritmo para que esse encontre o modelo
+            (geralmente 75%), com o intuito de avaliar a capacidade do modelo encontrado de generalizar a dados nunca antes
+            vistos, isto é, ser capaz de manter uma boa performance ao fazer previsões dos valores chaves a partir de
+            atributos que não estavam disponíveis a ele durante sua fase de treinamento.</h2>
+        </div>
+      </div>
+      <div class='card'>
+        <div class='container'>
+          <h2> Escolhemos o modelo de Árvore de Decisão por ser um modelo que não necessita de muitos ajustes de parâmetros,
+            ou pré-processamento dos dados para obter uma performance razoável, além de fornecer motivos intuitivos para suas
+            previsões.</h2>
+        </div>
+      </div>
+      <div class='card'>
+        <div class='container'>
+          <h2> A avaliação da performance do modelo, como se trata de um problema de Regressão, é feita através do cálculo do
+            seu coeficiente de determinação que pode variar de 0 a 1. Um modelo com coeficiente de determinação 0 é aquele
+            que prevê a média de todos os valores-alvo do subconjunto de treino, independente do atributo fornecido. Já
+            um modelo com coeficiente de determinação 1 é capaz de prever perfeitamente o valor-alvo dado qualquer atributo
+            do conjunto de dados fornecidos para o teste.</h2>
+        </div>
+      </div>
+      <div class='card'>
+        <div class='container'>
+          <h2> O objetivo do nosso modelo é prever o preço da gasolina em R$/L, a partir do peso mensal do item de subgrupo
+            gasolina no índice geral do IPCA em %. Um dos motivos do modelo possuir ótima performance é a forte, e óbvia,
+            relação entre o atributo e o valor-chave.</h2>
+        </div>
+      </div>
+    </section>
+    <h2><a href='/graficos'>Clique aqui</a> Para ver o gráfico da Árvore de Decisão Treinada</h2>
+    <script src="{% static 'js/sidenav.js' %}"></script>
+  </body>
+</html>

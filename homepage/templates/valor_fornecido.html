@@ -1,0 +1,16 @@
+{% load static %}
+{% include 'header.html' %}
+  <body>
+    {% include 'navbar.html' %}
+    <section class='flex_col_center'>
+      <div class='card'>
+        <div class='container'>
+          <h1>Obrigado!</h1>
+          <h2>O Exemplo (X={{X}},y={{y_real}}) da Previsao#{{id}} Foi Adicionado ao Banco de Dados</h2>
+          <h2>E Logo Será Usado Para Melhorar as Previsões do Modelo.</h2>
+        </div>
+      </div>
+    </section>
+    <script src="{% static 'js/sidenav.js' %}"></script>
+  </body>
+</html>

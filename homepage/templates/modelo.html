@@ -1,0 +1,32 @@
+{% load static %}
+<!doctype html>
+{% include 'header.html' %}
+  <body>
+    {% include 'navbar.html' %}
+    <h1>Modelo</h1>
+    <section class='flex_col_stretch'>
+      <div class='card'>
+        <div class='container'>
+          <h1><a href='/prever'>Fazer Nova Previsão</a></h1>
+        </div>
+      </div>
+      <br>
+      <div class='card'>
+        <div class='container'>
+          <h1><a href='/validacao_modelo'>Avaliar Modelo</a></h1>
+        </div>
+      </div>
+      <div class='card'>
+        <div class='container'>
+          <h1><a href='/teste_params'>Treinar e Comparar Modelos Variando um Parâmetro</a></h1>
+        </div>
+      </div>
+      <div class='card'>
+        <div class='container'>
+          <h1><a href='/dados_modelo'>Ver Tabela de Dados Utilizados</a></h1>
+        </div>
+      </div>
+    </section>
+    <script src="{% static 'js/sidenav.js' %}"></script>
+  </body>
+</html>

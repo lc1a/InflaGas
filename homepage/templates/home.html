@@ -1,0 +1,33 @@
+{% load static %}
+<!doctype html>
+{% include 'header.html' %}
+  <body>
+    {% include 'navbar.html' %}
+    <h1>Projeto InflaGas</h1>
+    <br>
+    <section class='flex_col_center'>
+      <div class=card style='width:314px;height:380px;'>
+        <img src="{% static 'media/github.png' %}">
+        <div class='container'>
+          <h2><a href='https://github.com/lc1a/InflaGas'>Github do Projeto</a></h2>
+        </div>
+      </div>
+    </section>
+      <br><br>
+      {% if request.user.is_authenticated %}
+    <section class='flex_col_stretch'>
+      <div class=card>
+        <div class='container'>
+          <h1><a href='/lista_previsoes'>Lista de Previsões</a></h1>
+        </div>
+      </div>
+      <div class=card>
+        <div class='container'>
+          <h1><a href='/lista_testes'>Lista de Testes de Parâmetros</a></h1>
+        </div>
+      </div>
+    </section>
+    {% endif %}
+    <script src="{% static 'js/sidenav.js' %}"></script>
+  </body>
+</html>

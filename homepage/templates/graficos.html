@@ -1,0 +1,44 @@
+{% load static %}
+<!doctype html>
+<html>
+  <header>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Projeto InflaGas</title>
+    <link rel="icon" type="image/x-icon" href= '{% static "favicon.ico" %}'>
+    <link rel="stylesheet" href='{% static "css/slideshow.css" %}'>
+  </header>
+  <body>
+    {% include 'navbar.html' %}
+    <h1>Gráficos Criados Para Análise dos Dados:</h1>
+    <div class="gallery" id="gallery">
+        <div class="gallery-item">
+            <div class="content"><img src="{% static 'media/graf1.jpg' %}" alt=""></div>
+        </div>
+        <div class="gallery-item">
+            <div class="content"><img src="{% static 'media/graf2.jpg' %}" alt=""></div>
+        </div>
+        <div class="gallery-item">
+            <div class="content"><img src="{% static 'media/graf3.jpg' %}" alt=""></div>
+        </div>
+        <div class="gallery-item">
+            <div class="content"><img src="{% static 'media/graf4.jpg' %}" alt=""></div>
+        </div>
+        <div class="gallery-item">
+            <div class="content"><img src="{% static 'media/graf5.jpg' %}" alt=""></div>
+        </div>
+        <div class="gallery-item">
+            <div class="content"><img src="{% static 'media/graf6.jpg' %}" alt=""></div>
+        </div>
+        <div class="gallery-item">
+            <div class="content"><img src="data:image/png;base64,{{disp}}" alt=""></div>
+        </div>
+        <div class="gallery-item">
+            <div class="content"><img src="data:image/png;base64,{{arvore}}" alt=""></div>
+        </div>
+    </div>
+    <script src="{% static 'js/gallery.js' %}"></script>
+    <script src="{% static 'js/sidenav.js' %}"></script>
+</body>
+</html>

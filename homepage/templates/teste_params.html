@@ -1,0 +1,25 @@
+{% load static %}
+<!doctype html>
+{% include 'header.html' %}
+  <body>
+    {% include 'navbar.html' %}
+    <h1>Insira o Parâmetro Que Deseja Testar e os Valores Para Serem Testados</h1>
+    <form method='post'>
+      {% csrf_token %}
+      <section class='flex_col_center'>
+        <div class='fields'>
+          <h2>Parâmetro</h2>
+          <h2><input type='text' name='parametro'></input></h2>
+        </div>
+        <div class='fields'>
+          <h2>Valores ([v1,v2,v3,...])</h2>
+          <h2><input type='text' name='valores'></input></h2>
+        </div>
+        <div class='buttons'>
+          <input type='submit' value='Testar'></input>
+        </div>
+      </section>
+    </form>
+    <script src="{% static 'js/sidenav.js' %}"></script>
+  </body>
+</html>

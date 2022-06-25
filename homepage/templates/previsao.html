@@ -1,0 +1,39 @@
+{% load static %}
+{% include 'header.html' %}
+  <body>
+    {% include 'navbar.html' %}
+    <h1>Previsão #{{id}}</h1>
+    <br>
+    <section class='flex_col_stretch'>
+      <div class='card'>
+        <div class='container'>
+          <h1>Preço da Gasolina Previsto (R$/L):</h1>
+          <h1>{{y_prev}}</h1>
+        </div>
+      </div>
+      <br>
+      <div class='card'>
+        <div class='container'>
+          <h2>Sabe o preço médio real da gasolina dado este peso mensal?</h2>
+          <h2>Caso sim, ajude a melhorar o modelo fornecendo este:</h2>
+        </div>
+      </div>
+      <br>
+    </section>
+      <form method='post'>
+        {% csrf_token %}
+        <section class='flex_col_center'>
+          <div class='fields'>
+            <h2>Preço (R$/L)</h2>
+            <h2><input type='number' name='y_real' step="any"></input></h2>
+          </div>
+          <div class='buttons'>
+            <input type='submit' value='Enviar'/>
+          </div>
+        </section>
+      </form>
+      <br>
+    <h2>Fazer <a href='/prever'>Nova Previsão</a></h2>
+    <script src="{% static 'js/sidenav.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+{% load static %}
+{% include 'header.html' %}
+<body>
+  {% include 'navbar.html' %}
+  <h1>Tabela de Previsões Feitas:</h1>
+  <br>
+  <section class='flex_col_center' id='tteste'>
+    <div class='card'>
+      <table class="fixed_header">
+        <thead>
+          <tr>
+            <th scope='col'>Id</th>
+            <th scope='col'>Atributo</th>
+            <th scope='col'>Valor-Chave Previsto</th>
+            <th scope='col'>Valor-Chave Real</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for p in lista_prevs %}
+          <tr>
+            <td data-label='Id'>{{p.id}}</td>
+            <td data-label='Atributo'>{{p.X}}</td>
+            <td data-label='Valor-Chave Previsto'>{{p.Y_prev}}</td>
+            <td data-label='Valor-Chave Real'>{{p.Y_real}}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <script src="{% static 'js/sidenav.js' %}"></script>
+</body>
+</html>
