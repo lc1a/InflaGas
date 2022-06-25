@@ -81,6 +81,7 @@ a{
 }
 .flex_nav_mob>div:hover{
   background-color: #111;
+  transition: 0.1s;
 }
 .flex_nav_mob>div>a{
   text-decoration: none;
@@ -96,11 +97,11 @@ a{
   background-color: #333; /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   overflow-y:scroll;
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+  transition: 0s; /* 0.5 second transition effect to slide in the sidebar */
 }
 /* Mobile adjust for small screens */
 /* Mobile change nav */
-@media screen and (max-width: 600px){
+@media screen and (max-width: 1000px){
   .flex_nav{
     display:none;
   }
@@ -169,14 +170,9 @@ a{
 .gallery .gallery-item:hover {
   transform: scale(1.050);
 }
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
   .gallery {
-    grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
-  }
-}
-@media (max-width: 400px) {
-  .gallery {
-    grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
   }
 }
 
