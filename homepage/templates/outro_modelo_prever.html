@@ -3,16 +3,12 @@
   <body>
     {% include 'navbar.html' %}
     <h1>Nova Previsão</h1>
-    <br>
-    {% if prev_form.errors %}
-      <h2> Erro</h2>
-    {% endif %}
     <form method='post' onsubmit='showCarregando()'>
       {% csrf_token %}
       <section class='flex_col_center'>
         <div class='fields'>
-          <h2>{{prev_form.X.label_tag}}</h2>
-          <h2>{{prev_form.X}}</h2>
+          <h2>Atributo:</h2>
+          <h2><input type='number' step='any' name='X'/></h2>
         </div>
         <div class='buttons'>
           <input type='submit' value='Prever'/>

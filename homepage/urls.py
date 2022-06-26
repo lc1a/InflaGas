@@ -17,4 +17,7 @@ urlpatterns = [path('',views.home,name='home'),
                path('validacao_modelo',views.validacao_modelo,name='cv_modelo'),
                path('teste_params',views.teste_params,name='teste_params'),
                path('lista_testes',views.lista_testes,name='lista_testes'),
-               path('outros_modelos',views.outros_modelos,name='outros_modelos'),]
+               path('outros_modelos',views.outros_modelos,name='outros_modelos'),
+               path('outros_modelos/<str:alg>/prever',views.prever_outro,name='prever_outro'),
+               path('outros_modelos/<str:alg>/validacao_modelo',views.validacao_outro,name='validacao_outro'),
+               path('outros_modelos/<str:alg>/teste_params',views.teste_params_outro,name='teste_params_outro'),]

@@ -12,7 +12,7 @@
         </div>
       </div>
     </section>
-    <form method='post'>
+    <form method='post' onsubmit="showCarregando()">
       {% csrf_token %}
       <section class='flex_col_center'>
         <h2>Algoritmo</h2>
@@ -39,6 +39,9 @@
       </section>
     </form>
     <br>
+    <section class='flex_col_center'>
+      <div id='carregando'></div>
+    </section>
     <section class='flex_col_stretch'>
       <div class='card'>
         <div class='container'>

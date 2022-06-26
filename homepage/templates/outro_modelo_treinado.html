@@ -17,14 +17,24 @@
       </div>
     </section>
     <br>
+    <section class='flex_col_center'>
+      <div id='carregando'></div>
+    </section>
     <section class='flex_col_stretch'>
       <div class='card'>
         <div class='container'>
-          <h1>Coeficientes de Determinação Nos Subconjuntos de Treino e de Teste:</h1>
-          <br>
-          <h2>Treino: {{r_treino}}</h2>
-          <br>
-          <h2>Teste: {{r_teste}}</h2>
+          <h1><a href='/outros_modelos/{{alg}}/prever'>Fazer Nova Previsão</a></h1>
+        </div>
+      </div>
+      <br>
+      <div class='card'>
+        <div class='container'>
+          <h1><a href='/outros_modelos/{{alg}}/validacao_modelo' onclick="showCarregando()">Avaliar Modelo</a></h1>
+        </div>
+      </div>
+      <div class='card'>
+        <div class='container'>
+          <h1><a href='/outros_modelos/{{alg}}/teste_params'>Treinar e Comparar Modelos Variando um Parâmetro</a></h1>
         </div>
       </div>
     </section>

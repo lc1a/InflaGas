@@ -1,0 +1,17 @@
+{% load static %}
+{% include 'header.html' %}
+  <body>
+    {% include 'navbar.html' %}
+    <h1>Previsão do Modelo Utilizando Algoritmo {{alg_nome}}</h1>
+    <br>
+    <section class='flex_col_stretch'>
+      <div class='card'>
+        <div class='container'>
+          <h1>Preço da Gasolina Previsto (R$/L):</h1>
+          <h1>{{y_prev}}</h1>
+        </div>
+      </div>
+    </section>
+    <script src="{% static 'js/sidenav.js' %}"></script>
+  </body>
+</html>

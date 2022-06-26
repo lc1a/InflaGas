@@ -20,7 +20,7 @@
       </div>
       <br>
     </section>
-      <form method='post'>
+      <form method='post' onsubmit="showCarregando()">
         {% csrf_token %}
         <section class='flex_col_center'>
           <div class='fields'>
@@ -32,6 +32,9 @@
           </div>
         </section>
       </form>
+      <section class='flex_col_center'>
+        <div id='carregando'></div>
+      </section>
       <br>
     <h2>Fazer <a href='/prever'>Nova Previsão</a></h2>
     <script src="{% static 'js/sidenav.js' %}"></script>

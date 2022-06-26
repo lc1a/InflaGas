@@ -4,6 +4,9 @@
   <body>
     {% include 'navbar.html' %}
     <h1>Modelo</h1>
+    <section class='flex_col_center'>
+      <div id='carregando'></div>
+    </section>
     <section class='flex_col_stretch'>
       <div class='card'>
         <div class='container'>
@@ -13,7 +16,7 @@
       <br>
       <div class='card'>
         <div class='container'>
-          <h1><a href='/validacao_modelo'>Avaliar Modelo</a></h1>
+          <h1><a href='/validacao_modelo' onclick='showCarregando()'>Avaliar Modelo</a></h1>
         </div>
       </div>
       <div class='card'>
@@ -23,7 +26,7 @@
       </div>
       <div class='card'>
         <div class='container'>
-          <h1><a href='/dados_modelo'>Ver Tabela de Dados Utilizados</a></h1>
+          <h1><a href='/dados_modelo' onclick='showCarregando()'>Ver Tabela de Dados Utilizados</a></h1>
         </div>
       </div>
       <div class='card'>
