@@ -1,0 +1,19 @@
+{% load static %}
+<!doctype html>
+{% include 'header.html' %}
+  <body>
+    {% include 'navbar.html' %}
+    <section class='flex_col_stretch'>
+      <div class='card'>
+        <div class='container'>
+          <h1>Erro ao Testar Valores de Parâmetros</h1>
+          <h2>Os Valores ou Parâmetro digitado não estão no formato correto.</h2>
+          <h2>Certifique-se de que:</h2>
+          <h2>O Parâmetro é válido para o modelo</h2>
+          <h2>Os valores para o parâmetro estão no formato: "[v1,v2,v3,...]"</h2>
+        </div>
+      </div>
+    </section>
+    <script src="{% static 'js/sidenav.js' %}"></script>
+  </body>
+</html>

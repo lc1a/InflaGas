@@ -16,4 +16,5 @@ urlpatterns = [path('',views.home,name='home'),
                path('lista_previsoes',views.lista_previsoes,name='lista_previsoes'),
                path('validacao_modelo',views.validacao_modelo,name='cv_modelo'),
                path('teste_params',views.teste_params,name='teste_params'),
-               path('lista_testes',views.lista_testes,name='lista_testes'),]
+               path('lista_testes',views.lista_testes,name='lista_testes'),
+               path('outros_modelos',views.outros_modelos,name='outros_modelos'),]

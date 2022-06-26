@@ -3,7 +3,17 @@
 {% include 'header.html' %}
   <body>
     {% include 'navbar.html' %}
-    <h1>Insira o Parâmetro Que Deseja Testar e os Valores Para Serem Testados</h1>
+    <section class='flex_col_stretch'>
+      <div class='card'>
+        <div class='container'>
+          <h1>Insira o Parâmetro Que Deseja Testar e os Valores Para Serem Testados</h1>
+          <h2>Parâmetros da Árvore de Decisão Utilizados Para Controlar sua Complexidade:</h2>
+          <h2>'max_depth' = Profundidade Máxima da Árvore, isto é quantidade máxima de regras (Nós), excluindo a primeira, que a árvore pode possuir.</h2>
+          <h2>'max_leaf_nodes'= Quantidade Máxima de Valores Únicos para as Previsões (Nós Folha) que a árvore pode possuir.</h2>
+          <h2>Para saber todos os parâmetros acesse a documentação da implementação utilizada <a href='https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeRegressor.html'>clicando aqui.</a></h2>
+        </div>
+      </div>
+    </section>
     <form method='post'>
       {% csrf_token %}
       <section class='flex_col_center'>

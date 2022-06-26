@@ -1,0 +1,33 @@
+{% load static %}
+<!doctype html>
+{% include 'header.html' %}
+  <body>
+    {% include 'navbar.html' %}
+    <section class='flex_col_stretch'>
+      <div class='card'>
+        <div class='container'>
+          <h1>Função do Modelo Utilizando Algoritmo {{alg_nome}}:</h1>
+        </div>
+      </div>
+    </section>
+    <br>
+    <section class='flex_col_center'>
+      <div class='card'>
+        <img id='tvalimg' src="data:image/png;base64,{{disp}}"/>
+      </div>
+    </section>
+    <br>
+    <section class='flex_col_stretch'>
+      <div class='card'>
+        <div class='container'>
+          <h1>Coeficientes de Determinação Nos Subconjuntos de Treino e de Teste:</h1>
+          <br>
+          <h2>Treino: {{r_treino}}</h2>
+          <br>
+          <h2>Teste: {{r_teste}}</h2>
+        </div>
+      </div>
+    </section>
+    <script src="{% static 'js/sidenav.js' %}"></script>
+  </body>
+</html>

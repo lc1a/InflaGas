@@ -156,21 +156,65 @@ def teste_params(request):
       y_ig=np.array([ex['Y'] for ex in lista_exemplos])
       param=request.POST['parametro']
       valores=request.POST['valores']
-      valores_f=[float(i) for i in valores.replace(']','').replace('[','').split(',')]
-      res=ARVORE.teste_val_param(param,valores_f,X_ig,y_ig,tts_rs=0)[1]
-      res_treino=res['Treino'].to_numpy().ravel()
-      res_teste=res['Teste'].to_numpy().ravel()
-      for v,rt,rtt in zip(valores_f,res_treino,res_teste):
-          t=models.TesteParams(Algoritmo='rarvore',Valores=v,Parametro=param,R2Treino=round(rt,2),R2Teste=round(rtt,2))
-          t.save()
+      try:
+        valores_f=[float(i) for i in valores.replace(']','').replace('[','').split(',')]
+        res=ARVORE.teste_val_param(param,valores_f,X_ig,y_ig,tts_rs=0)[1]
+        res_treino=res['Treino'].to_numpy().ravel()
+        res_teste=res['Teste'].to_numpy().ravel()
+        for v,rt,rtt in zip(valores_f,res_treino,res_teste):
+            t=models.TesteParams(Algoritmo='rarvore',Valores=v,Parametro=param,R2Treino=round(rt,2),R2Teste=round(rtt,2))
+            t.save()
 
-      fbytes = io.BytesIO()
-      fig=ARVORE.teste_val_param(param,valores_f,X_ig,y_ig,tts_rs=0,plotar=True,subplots_kwds={'figsize':(8,3)})[0]
-      fig.savefig(fbytes,dpi=150,bbox_inches='tight',pad_inches=0.1)
-      b64 = base64.b64encode(fbytes.getvalue()).decode()
-      context={'param':param,'fig':b64}
-      template=loader.get_template('teste_params_feito.html')
-      return HttpResponse(template.render(context=context,request=request))
+        fbytes = io.BytesIO()
+        fig=ARVORE.teste_val_param(param,valores_f,X_ig,y_ig,tts_rs=0,plotar=True,subplots_kwds={'figsize':(8,3)})[0]
+        fig.savefig(fbytes,dpi=150,bbox_inches='tight',pad_inches=0.1)
+        b64 = base64.b64encode(fbytes.getvalue()).decode()
+        context={'param':param,'fig':b64}
+        template=loader.get_template('teste_params_feito.html')
+        return HttpResponse(template.render(context=context,request=request))
+      except:
+        template=loader.get_template('valores_errados.html')
+        return HttpResponse(template.render(request=request))
+
 
     template=loader.get_template('teste_params.html')
+    return HttpResponse(template.render(request=request))
+
+def outros_modelos(request):
+    if request.method=='POST':
+        alg=request.POST['algoritmo']
+        if alg=='rlmq':
+            alg_name='Reg. Linear Mín. Quadrados'
+        elif alg=='rlridge':
+            alg_name='Reg. Linear Ridge'
+        elif alg=='rllasso':
+            alg_name='Reg. Linear Lasso'
+        elif alg=='lsvm':
+            alg_name='Máq. Vetores Suporte Linear'
+        elif alg=='rbfsvm':
+            alg_name='Máq. Vetores Suporte RBF'
+        if request.POST['normalizar']=='sim':
+            norm=None
+        else:
+            norm='minmax'
+        lista_exemplos=models.DadosModelo.objects.all().values()
+        X_ig=np.array([ex['X'] for ex in lista_exemplos]).reshape(-1,1)
+        y_ig=np.array([ex['Y'] for ex in lista_exemplos])
+        if alg=='rlridge' or alg=='rllasso':
+            modelo=Reg1Atr(algoritmo=alg,algoritmo_kwds={'alpha':0.0001},normalizador=norm)
+        elif alg=='lsvm' or alg=='rbfsvm':
+            modelo=Reg1Atr(algoritmo=alg,algoritmo_kwds={'C':1},normalizador=norm)
+        else:
+            modelo=Reg1Atr(algoritmo=alg,normalizador=norm)
+        modelo.norm_treinar_aval(X_ig,y_ig,tts_rs=0)
+        fbytes = io.BytesIO()
+        fig=modelo.dispersao_modelo('teste')[0]
+        fig.savefig(fbytes,dpi=150,bbox_inches='tight',pad_inches=0.1)
+        b64 = base64.b64encode(fbytes.getvalue()).decode()
+        r_treino=float(modelo.aval['Treino'].iloc[0])
+        r_teste=float(modelo.aval['Teste'].iloc[0])
+        context={'alg_nome':alg_name,'disp':b64,'r_treino':r_treino,'r_teste':r_teste}
+        template=loader.get_template('outro_modelo_treinado.html')
+        return HttpResponse(template.render(context=context,request=request))
+    template=loader.get_template('outros_modelos.html')
     return HttpResponse(template.render(request=request))

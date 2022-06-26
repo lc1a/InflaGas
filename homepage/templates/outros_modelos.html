@@ -1,0 +1,51 @@
+{% load static %}
+<!doctype html>
+{% include 'header.html' %}
+  <body>
+    {% include 'navbar.html' %}
+    <section class='flex_col_stretch'>
+      <div class='card'>
+        <div class='container'>
+          <h1>Treinar e Avaliar Outros Tipos de Modelos Nos Dados:</h1>
+          <br>
+          <h2>Escolha o Algoritmo a ser Utilizado e Opções de Treino</h2>
+        </div>
+      </div>
+    </section>
+    <form method='post'>
+      {% csrf_token %}
+      <section class='flex_col_center'>
+        <h2>Algoritmo</h2>
+        <div class='fields'>
+          <select name='algoritmo'>
+            <option value='rlmq'>Regressão Linear</option>
+            <option value='rlridge'>Regressão Ridge</option>
+            <option value='rllasso'>Regressão Lasso</option>
+            <option value='lsvm'>Máquina de Vetores Suporte-Linear</option>
+            <option value='rbfsvm'>Máquina de Vetores Suporte-RBF</option>
+          </select>
+        </div>
+        <h2>Atributos Em uma Mesma Escala?</h2>
+        <div class='fields'>
+          <select name='normalizar'>
+            <option value='sim'>Sim</option>
+            <option value='nao'>Não</option>
+          </select>
+        </div>
+        <h2></h2>
+        <div class='buttons'>
+          <input type='submit' value='Treinar'/>
+        </div>
+      </section>
+    </form>
+    <br>
+    <section class='flex_col_stretch'>
+      <div class='card'>
+        <div class='container'>
+          <h2>Observação: O tempo de treino utilizando os algoritmos de Máquinas de Vetores Suportes é maior devido à maior complexidade destes métodos de treino.</h2>
+        </div>
+      </div>
+    </section>
+    <script src="{% static 'js/sidenav.js' %}"></script>
+  </body>
+</html>
