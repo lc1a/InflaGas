@@ -1,0 +1,17 @@
+{% load static %}
+<!doctype html>
+{% include 'header.html' %}
+  <body>
+    {% include 'navbar.html' %}
+    <section class='flex_col_stretch'>
+      <div class='card'>
+        <div class='container'>
+          <h1>Limites de Produção</h1>
+          <h2>Devido ao longo tempo de treinamento não foi possível realizar a validação cruzada nas Máquinas de Vetores Suporte</h2>
+          <h2>Para realizar o teste em sua própria máquina utilize a classe construida no módulo disponível no <a href='https://github.com/lc1a/InflaGas'>GitHub</a></h2>
+        </div>
+      </div>
+    </section>
+    <script src="{% static 'js/sidenav.js' %}"></script>
+  </body>
+</html>

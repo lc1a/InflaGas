@@ -267,8 +267,8 @@ def validacao_outro(request,alg):
         modelo=Reg1Atr(algoritmo=alg,algoritmo_kwds={'alpha':0.0001},normalizador=None)
         modelo_=Reg1Atr(algoritmo=alg,algoritmo_kwds={'alpha':0.0001},normalizador=None)
     elif alg=='lsvm' or alg=='rbfsvm':
-        modelo=Reg1Atr(algoritmo=alg,algoritmo_kwds={'C':1},normalizador=None)
-        modelo_=Reg1Atr(algoritmo=alg,algoritmo_kwds={'C':1},normalizador=None)
+        template=loader.get_template('limites_producao.html')
+        return HttpResponse(template.render(request=request))
     else:
         modelo=Reg1Atr(algoritmo=alg,normalizador=None)
         modelo_=Reg1Atr(algoritmo=alg,normalizador=None)
@@ -299,8 +299,8 @@ def teste_params_outro(request,alg):
             modelo=Reg1Atr(algoritmo=alg,algoritmo_kwds={'alpha':0.0001},normalizador=None)
             modelo_=Reg1Atr(algoritmo=alg,algoritmo_kwds={'alpha':0.0001},normalizador=None)
         elif alg=='lsvm' or alg=='rbfsvm':
-            modelo=Reg1Atr(algoritmo=alg,algoritmo_kwds={'C':1},normalizador=None)
-            modelo_=Reg1Atr(algoritmo=alg,algoritmo_kwds={'C':1},normalizador=None)
+            template=loader.get_template('limites_producao.html')
+            return HttpResponse(template.render(request=request))
         else:
             modelo=Reg1Atr(algoritmo=alg,normalizador=None)
             modelo_=Reg1Atr(algoritmo=alg,normalizador=None)
