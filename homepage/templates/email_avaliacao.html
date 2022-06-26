@@ -1,0 +1,33 @@
+{% load static %}
+<!doctype html>
+<html>
+  <body style="margin:0;
+    background-image:linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)),url('https://projetonotebookcdia.com/static/media/bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;">
+    <h1 style="  text-align: center;
+      font-family: monospace;
+      font-size: 40px;
+      font-weight:bold;
+      color:#d3d3d3">Solicitação de Envio de E-mail da Avaliação do Modelo.</h1>
+    <br>
+    <br>
+    <h2 style="  text-align: center;
+      font-family: monospace;
+      font-size: 20px;
+      font-weight:bold;
+      color:#d3d3d3">Coeficientes de Determinação:</h2>
+    <br>
+    <h3 style="text-align: center;
+      font-family: monospace;
+      font-size: 20px;
+      font-weight:bold;
+      color:#d3d3d3">Subconjunto de Treino:{{r_treino}}</h3>
+    <h3 style="text-align: center;
+      font-family: monospace;
+      font-size: 20px;
+      font-weight:bold;
+      color:#d3d3d3">Subocnjunto de Teste:{{r_teste}}</h3>
+  </body>
+</html>

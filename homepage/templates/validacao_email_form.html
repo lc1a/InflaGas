@@ -1,0 +1,23 @@
+{% load static %}
+{% include 'header.html' %}
+  <body>
+    {% include 'navbar.html' %}
+    <h1>Enviar Avaliação Por E-Mail</h1>
+    <form method='post' onsubmit='showCarregando()'>
+      {% csrf_token %}
+      <section class='flex_col_center'>
+        <div class='fields'>
+          <h2>E-mail:</h2>
+          <h2><input type='email' name='email'/></h2>
+        </div>
+        <div class='buttons'>
+          <input type='submit' value='Enviar'/>
+        </div>
+      </section>
+    </form>
+    <section class='flex_col_center'>
+      <div id='carregando'></div>
+    </section>
+    <script src="{% static 'js/sidenav.js' %}"></script>
+  </body>
+</html>

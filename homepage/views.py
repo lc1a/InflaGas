@@ -11,6 +11,9 @@ import io, base64
 import numpy as np
 import pandas as pd
 import pickle
+from django.core import mail
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 # Create your views here.
 def supuser(user):
     return user.is_superuser
@@ -267,8 +270,8 @@ def validacao_outro(request,alg):
         modelo=Reg1Atr(algoritmo=alg,algoritmo_kwds={'alpha':0.0001},normalizador=None)
         modelo_=Reg1Atr(algoritmo=alg,algoritmo_kwds={'alpha':0.0001},normalizador=None)
     elif alg=='lsvm' or alg=='rbfsvm':
-        template=loader.get_template('limites_producao.html')
-        return HttpResponse(template.render(request=request))
+        modelo=Reg1Atr(algoritmo=alg,algoritmo_kwds={'C':1},normalizador=None)
+        modelo_=Reg1Atr(algoritmo=alg,algoritmo_kwds={'C':1},normalizador=None)
     else:
         modelo=Reg1Atr(algoritmo=alg,normalizador=None)
         modelo_=Reg1Atr(algoritmo=alg,normalizador=None)
@@ -299,8 +302,8 @@ def teste_params_outro(request,alg):
             modelo=Reg1Atr(algoritmo=alg,algoritmo_kwds={'alpha':0.0001},normalizador=None)
             modelo_=Reg1Atr(algoritmo=alg,algoritmo_kwds={'alpha':0.0001},normalizador=None)
         elif alg=='lsvm' or alg=='rbfsvm':
-            template=loader.get_template('limites_producao.html')
-            return HttpResponse(template.render(request=request))
+            modelo=Reg1Atr(algoritmo=alg,algoritmo_kwds={'C':1},normalizador=None)
+            modelo_=Reg1Atr(algoritmo=alg,algoritmo_kwds={'C':1},normalizador=None)
         else:
             modelo=Reg1Atr(algoritmo=alg,normalizador=None)
             modelo_=Reg1Atr(algoritmo=alg,normalizador=None)
@@ -331,3 +334,48 @@ def teste_params_outro(request,alg):
     context={'alg_nome':alg_name}
     template=loader.get_template('outro_modelo_teste_params.html')
     return HttpResponse(template.render(context=context,request=request))
+
+def validacao_email(request):
+    if request.method=='POST':
+        lista_exemplos=models.DadosModelo.objects.all().values()
+        X_ig=np.array([ex['X'] for ex in lista_exemplos]).reshape(-1,1)
+        y_ig=np.array([ex['Y'] for ex in lista_exemplos])
+        modelo=Reg1Atr('rarvore')
+        modelo.norm_treinar_aval(X_ig,y_ig,tts_rs=0)
+        r_treino=float(modelo.aval['Treino'].iloc[0])
+        r_teste=float(modelo.aval['Teste'].iloc[0])
+        subject = 'Solicitação de Envio de Avaliação de Modelo'
+        html_message = render_to_string('email_avaliacao.html',context={'r_treino':r_treino,'r_teste':r_teste})
+        plain_message = strip_tags(html_message)
+        from_email = 'projetoinflagas@gmail.com'
+        to = request.POST['email']
+        mail.send_mail(subject, plain_message, from_email, [to], html_message=html_message)
+        template=loader.get_template('validacao_email_sent.html')
+        return HttpResponse(template.render(request=request))
+    template=loader.get_template('validacao_email_form.html')
+    return HttpResponse(template.render(request=request))
+
+def validacao_email_outro(request,alg):
+    if request.method=='POST':
+        lista_exemplos=models.DadosModelo.objects.all().values()
+        X_ig=np.array([ex['X'] for ex in lista_exemplos]).reshape(-1,1)
+        y_ig=np.array([ex['Y'] for ex in lista_exemplos])
+        if alg=='rlridge' or alg=='rllasso':
+            modelo=Reg1Atr(algoritmo=alg,algoritmo_kwds={'alpha':0.0001})
+        elif alg=='lsvm' or alg=='rbfsvm':
+            modelo=Reg1Atr(algoritmo=alg,algoritmo_kwds={'C':1})
+        else:
+            modelo=Reg1Atr(algoritmo=alg)
+        modelo.norm_treinar_aval(X_ig,y_ig,tts_rs=0)
+        r_treino=float(modelo.aval['Treino'].iloc[0])
+        r_teste=float(modelo.aval['Teste'].iloc[0])
+        subject = 'Solicitação de Envio de Avaliação de Modelo'
+        html_message = render_to_string('email_avaliacao.html',context={'r_treino':r_treino,'r_teste':r_teste})
+        plain_message = strip_tags(html_message)
+        from_email = 'projetoinflagas@gmail.com'
+        to = request.POST['email']
+        mail.send_mail(subject, plain_message, from_email, [to], html_message=html_message)
+        template=loader.get_template('validacao_email_sent.html')
+        return HttpResponse(template.render(request=request))
+    template=loader.get_template('validacao_email_form.html')
+    return HttpResponse(template.render(request=request))

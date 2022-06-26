@@ -20,4 +20,6 @@ urlpatterns = [path('',views.home,name='home'),
                path('outros_modelos',views.outros_modelos,name='outros_modelos'),
                path('outros_modelos/<str:alg>/prever',views.prever_outro,name='prever_outro'),
                path('outros_modelos/<str:alg>/validacao_modelo',views.validacao_outro,name='validacao_outro'),
-               path('outros_modelos/<str:alg>/teste_params',views.teste_params_outro,name='teste_params_outro'),]
+               path('outros_modelos/<str:alg>/teste_params',views.teste_params_outro,name='teste_params_outro'),
+               path('validacao_email',views.validacao_email,name='validacao_email'),
+               path('outros_modelos/<str:alg>/validacao_email',views.validacao_email_outro,name='validacao_email_outro'),]
