@@ -131,8 +131,8 @@ a{
   left: 50%;
   transform: translate3d(0, 0, 0);
   animation: zoomin 1s ease;
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 70%;
+  max-height: 60%;
   margin: auto;
 }
 
@@ -178,18 +178,21 @@ a{
 
 @keyframes zoomin {
   0%{
-    max-width: 50%;
+    max-width: 40%;
+    max-height: 40%;
     transform: rotate(-5deg);
     filter: blur(4px);
   }
 
   50% {
-    max-width: 50%;
+    max-width: 60%;
+    max-height: 50%;
     transform: rotate(5deg);
     filter: blur(4px);
   }
   100% {
-    max-width: 90%;
+    max-width: 70%;
+    max-height: 60%;
     transform: rotate(0deg);
   }
 }
